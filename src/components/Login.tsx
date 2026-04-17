@@ -46,10 +46,19 @@ export function Login() {
     try {
       if (mode === 'register') {
         const { data, error: err } = await signUp(email, password, displayName);
-        if (err) throw err;
+        if (err) {
+          const msg = err.message.toLowerCase();
+          if (msg.includes('already registered') || msg.includes('already exists') || msg.includes('user already')) {
+            throw new Error('Esiste già un account con questa email. Accedi o recupera la password.');
+          }
+          throw err;
+        }
         // When email confirmation is enabled, Supabase returns success but with no identities
-        // for an already-registered email (to prevent enumeration while still notifying us)
         if (data.user && data.user.identities && data.user.identities.length === 0) {
+          throw new Error('Esiste già un account con questa email. Accedi o recupera la password.');
+        }
+        // If user is null without error, also treat as duplicate
+        if (!data.user) {
           throw new Error('Esiste già un account con questa email. Accedi o recupera la password.');
         }
       } else if (mode === 'login') {

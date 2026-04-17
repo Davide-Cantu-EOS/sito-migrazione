@@ -174,5 +174,5 @@ export function useMigration() {
       .eq('id', 'active');
   }, []);
 
-  return { data, loading, importMigration, toggleInstallApp, updateCompileAppStatus };
+  return { data, loading, importMigration, toggleInstallApp, updateCompileAppStatus, refetch: fetchAll };
 }

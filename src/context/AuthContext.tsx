@@ -17,6 +17,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isRecovery, setIsRecovery] = useState(false);
 
   useEffect(() => {
+    // Check if the URL hash contains a recovery token (type=recovery)
+    const hash = window.location.hash;
+    if (hash && hash.includes('type=recovery')) {
+      setIsRecovery(true);
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
       setLoading(false);
