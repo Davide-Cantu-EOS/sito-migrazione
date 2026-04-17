@@ -4,15 +4,20 @@ import { Header } from './components/Header';
 import { Login } from './components/Login';
 import { KanbanBoard } from './components/KanbanBoard';
 import { FileUpload } from './components/FileUpload';
+import { ResetPasswordModal } from './components/ResetPasswordModal';
 import type { UserInfo } from './types';
 import './App.css';
 
 function AppContent() {
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, isRecovery } = useAuth();
   const { data, loading: dataLoading, importMigration, toggleInstallApp, updateCompileAppStatus } = useMigration();
 
   if (authLoading) {
     return <div className="loading">Caricamento...</div>;
+  }
+
+  if (isRecovery) {
+    return <ResetPasswordModal />;
   }
 
   if (!user) {
