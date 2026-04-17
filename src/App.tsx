@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useAuth } from './context/AuthContext';
 import { useMigration } from './hooks/useMigration';
 import { Header } from './components/Header';
@@ -10,7 +11,14 @@ import './App.css';
 
 function AppContent() {
   const { user, loading: authLoading, isRecovery } = useAuth();
-  const { data, loading: dataLoading, importMigration, toggleInstallApp, updateCompileAppStatus } = useMigration();
+  const { data, loading: dataLoading, importMigration, toggleInstallApp, updateCompileAppStatus, refetch } = useMigration();
+
+  // Refetch migration data when user logs in
+  useEffect(() => {
+    if (user) {
+      refetch();
+    }
+  }, [user, refetch]);
 
   if (authLoading) {
     return <div className="loading">Caricamento...</div>;

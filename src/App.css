@@ -162,6 +162,16 @@ body {
   padding-right: 2.5rem;
 }
 
+/* Hide native browser password reveal button */
+.login-input--password::-ms-reveal,
+.login-input--password::-webkit-credentials-auto-fill-button {
+  display: none;
+}
+
+input[type="password"]::-ms-reveal {
+  display: none;
+}
+
 .btn-show-password {
   position: absolute;
   right: 0.6rem;
