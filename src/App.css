@@ -127,6 +127,8 @@ body {
 
 .login-input {
   padding: 10px 14px;
+  background: var(--color-surface);
+  color: var(--color-text);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   font-size: 0.95rem;
@@ -142,6 +144,72 @@ body {
 .login-error {
   color: var(--color-red);
   font-size: 0.85rem;
+}
+
+.login-success {
+  color: var(--color-green);
+  font-size: 0.85rem;
+}
+
+.login-password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login-input--password {
+  width: 100%;
+  padding-right: 2.5rem;
+}
+
+.btn-show-password {
+  position: absolute;
+  right: 0.6rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.btn-show-password:hover {
+  opacity: 1;
+}
+
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.password-strength-bar {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+}
+
+.password-strength-segment {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+
+.password-strength-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+.login-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
 }
 
 .login-toggle {
@@ -286,9 +354,15 @@ body {
 .btn-cancel {
   padding: 8px 16px;
   background: var(--color-bg);
+  color: var(--color-text);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-cancel:hover {
+  background: var(--color-border);
 }
 
 .btn-confirm {
@@ -298,6 +372,14 @@ body {
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
+}
+
+.btn-confirm--danger {
+  background: var(--color-red);
+}
+
+.btn-confirm--danger:hover {
+  background: #dc2626;
 }
 
 .btn-confirm:disabled {
@@ -733,6 +815,46 @@ body {
     border-top: 1px solid var(--color-border);
     max-height: 250px;
   }
+}
+
+/* ===== EDIT NAME BUTTON ===== */
+.btn-edit-name {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  padding: 0 2px;
+  line-height: 1;
+  transition: opacity 0.2s;
+}
+
+.btn-edit-name:hover {
+  opacity: 1;
+}
+
+/* ===== DARK MODE SCROLLBARS ===== */
+[data-theme="dark"] {
+  scrollbar-color: #475569 #1e293b;
+  scrollbar-width: thin;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
 }
 
 /* ===== THEME TOGGLE ===== */
