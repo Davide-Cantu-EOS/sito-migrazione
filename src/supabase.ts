@@ -26,3 +26,6 @@ export const resetPassword = (email: string) =>
 
 export const updateDisplayName = (displayName: string) =>
   supabase.auth.updateUser({ data: { display_name: displayName } });
+
+export const updatePassword = (newPassword: string) =>
+  supabase.auth.updateUser({ password: newPassword });
